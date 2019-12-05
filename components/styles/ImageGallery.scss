@@ -1,0 +1,68 @@
+@import '_variables';
+
+.image-gallery {
+
+  &__wrapper {
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, .5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  &__list {
+    background: $color-white;
+    overflow: hidden;
+    margin: 1rem;
+    padding: 1rem 0 1rem 1rem;
+    border-radius: .5rem;
+  }
+
+  &__list-wrapper {
+    display: flex;
+    flex-direction: row;
+    overflow: auto;
+    margin-bottom: -2rem;
+    padding-bottom: 1rem;
+  }
+
+  &__list-item {
+    box-sizing: content-box;
+
+    & + & {
+      margin-left: .2rem;
+    }
+
+    &:last-child {
+      padding-right: 1rem;
+    }
+  }
+
+  &__img {
+    width: 6rem;
+    border-radius: .5rem;
+  }
+
+  &__control {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__button {
+    background: $color-white;
+    color: $color-blue;
+    width: 100%;
+    margin: 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 1rem;
+    border-style: none;
+    border-radius: .5rem;
+    cursor: pointer;
+  }
+}

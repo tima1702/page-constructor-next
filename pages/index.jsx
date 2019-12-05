@@ -1,7 +1,11 @@
-import * as React from "react";
+import React, { useState, useCallback, useEffect } from "react";
+import { FaBars } from 'react-icons/fa';
+import ConstructorApp from '../components/ConstructorApp';
 
-const Index = () => {
-  return <h1>test</h1>;
-};
+import '../components/styles/Button.scss'
+
+const Index = () => (
+  <ConstructorApp />
+)
 
 export default Index;

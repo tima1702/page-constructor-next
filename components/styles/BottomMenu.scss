@@ -1,0 +1,42 @@
+@import '_variables';
+
+.bottom-menu {
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
+  padding: 1rem 0;
+  background: $color-gray;
+
+  &__h3 {
+    font-weight: normal;
+    font-size: .8rem;
+    padding: .5rem 1rem;
+  }
+
+  &__list {
+    padding: 1rem;
+  }
+
+  &__list-item {
+    cursor: pointer;
+    height: 2rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+
+    svg {
+      width: 2rem;
+      height: 2rem;
+      background: $color-violet;
+      padding: .5rem;
+      border-radius: .5rem;
+      margin-right: .8rem;
+      color: $color-white;
+    }
+
+    & + & {
+      margin-top: 2rem;
+    }
+  }
+}

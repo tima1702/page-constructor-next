@@ -1,0 +1,18 @@
+.block {
+  padding: 1rem 0;
+  width: 100%;
+  text-align: center;
+
+  &__text,
+  &__img {
+    width: 100%;
+  }
+
+  &__text {
+    font-size: 1.2rem;
+  }
+
+  & + & {
+    margin-top: 1rem;
+  }
+}
