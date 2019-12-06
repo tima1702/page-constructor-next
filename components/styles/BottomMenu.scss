@@ -8,9 +8,10 @@
   background: $color-gray;
 
   &__h3 {
-    font-weight: normal;
-    font-size: .8rem;
+    font-weight: bold;
+    font-size: .9rem;
     padding: .5rem 1rem;
+    opacity: .6;
   }
 
   &__list {
@@ -26,13 +27,18 @@
     align-items: center;
 
     svg {
-      width: 2rem;
-      height: 2rem;
+      width: 1.5rem;
+      height: 1.5rem;
       background: $color-violet;
-      padding: .5rem;
+      padding: 1rem;
       border-radius: .5rem;
       margin-right: .8rem;
       color: $color-white;
+      transition: ease-in-out .2s;
+
+      &:hover {
+        opacity: .7;
+      }
     }
 
     & + & {

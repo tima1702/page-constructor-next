@@ -62,13 +62,6 @@ export default function ConstructorApp() {
   return (
     <div className="constructor-app">
       <div
-        className="button button--menu button--transparent"
-        // onClick={handleMenuClick}
-      >
-        <FaBars />
-      </div>
-
-      <div
         className="button button--add button--transparent"
         onClick={() => setBottomMenuState(true)}
       >
