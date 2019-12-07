@@ -15,6 +15,7 @@ export default function ImageGallery({ blocks, setBlocks, isVisible, setGalleryS
 
   const handleImageClick = useCallback(target => {
     setBlocks([...blocks, {
+      id: `image_${++blocks.length}`,
       type: 'image',
       url: target.src
     }]);

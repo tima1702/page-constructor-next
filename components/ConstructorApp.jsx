@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback } from "react";
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
 import { FaPlus } from 'react-icons/fa';
@@ -50,6 +50,15 @@ export default function ConstructorApp() {
     setBlocks(blocks.filter(block => block.id !== id))
   }, [blocks]);
 
+  const updateImageBlockSize = useCallback((id, size) => {
+    const arr = blocks;
+
+    const index = blocks.findIndex(el => el.id === id);
+    arr[index].size = size;
+
+    setBlocks(arr)
+  }, [blocks]);
+
   return (
     <div className="constructor-app">
       <div
@@ -75,8 +84,10 @@ export default function ConstructorApp() {
                   index={index}
                   id={block.id}
                   defaultText={block.text}
+                  defaultSize={block.size}
                   saveInput={saveInput}
                   removeBlock={removeBlock}
+                  updateDefaultSize={updateImageBlockSize}
                   blocks={blocks}
                 />
               )) }
