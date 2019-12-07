@@ -1,12 +1,8 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
-import {
-  FaBars,
-  FaPlus
-} from 'react-icons/fa';
+import { FaPlus } from 'react-icons/fa';
 
-import Popup from './Popup';
 import BottomMenu from './BottomMenu';
 import Block from './Block'
 import ImageGallery from './ImageGallery';
@@ -15,24 +11,15 @@ import './styles/Button.scss'
 import './styles/ConstructorApp.scss'
 
 export default function ConstructorApp() {
-  const [isPopupVisible, setPopupState] = useState(false);
   const [isGalleryVisible, setGalleryState] = useState(false);
   const [isBottomMenuVisible, setBottomMenuState] = useState(false);
   const [blocks, setBlocks] = useState([]);
 
-  const handleMenuClick = useCallback(
-    state => {
-      setPopupState(!isPopupVisible)
-    },
-    [setPopupState, isPopupVisible]
-  );
-
-
-  const saveText = useCallback((text, id) => {
+  const saveInput = useCallback(input => {
     const arr = blocks;
 
-    const index = blocks.findIndex(el => el.id === id);
-    arr[index].text = text;
+    const index = blocks.findIndex(el => el.id === input.id);
+    arr[index].text = input.value;
 
     setBlocks(arr)
   }, [blocks]);
@@ -57,6 +44,10 @@ export default function ConstructorApp() {
     );
 
     setBlocks(items)
+  }, [blocks]);
+
+  const removeBlock = useCallback(id => {
+    setBlocks(blocks.filter(block => block.id !== id))
   }, [blocks]);
 
   return (
@@ -84,7 +75,9 @@ export default function ConstructorApp() {
                   index={index}
                   id={block.id}
                   defaultText={block.text}
-                  saveText={saveText}
+                  saveInput={saveInput}
+                  removeBlock={removeBlock}
+                  blocks={blocks}
                 />
               )) }
               {provided.placeholder}
@@ -92,8 +85,6 @@ export default function ConstructorApp() {
           )}
         </Droppable>
       </DragDropContext>
-
-      <Popup isVisible={isPopupVisible} setPopupState={setPopupState} />
 
       <BottomMenu
         title="Добавить новый блок"

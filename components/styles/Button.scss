@@ -30,4 +30,12 @@
     bottom: .5rem;
     right: .5rem;
   }
+
+  &--control {
+    width: 100%;
+
+    & + & {
+      margin-left: 1rem;
+    }
+  }
 }
