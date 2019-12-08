@@ -3,13 +3,12 @@ import Head from 'next/head'
 
 import ConstructorApp from '../components/ConstructorApp';
 
-import '../components/styles/Button.scss'
-
 const Index = () => (
   <React.Fragment>
     <Head>
       <title>Page Constructor</title>
       <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1"/>
     </Head>
     <ConstructorApp />
   </React.Fragment>

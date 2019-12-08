@@ -7,7 +7,6 @@ import BottomMenu from './BottomMenu';
 import Block from './Block'
 import ImageGallery from './ImageGallery';
 
-import './styles/Button.scss'
 import './styles/ConstructorApp.scss'
 
 export default function ConstructorApp() {

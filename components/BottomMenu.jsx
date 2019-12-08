@@ -18,7 +18,7 @@ export default function BottomMenu(
     setGalleryState,
     setBottomMenuState
   }) {
-  const hidden = isVisible ? '' : 'hidden';
+  const hidden = isVisible ? '' : 'hidden-slide';
 
   const items = [
     {
@@ -43,34 +43,36 @@ export default function BottomMenu(
 
 
   return (
-    <div className={`bottom-menu ${hidden}`}>
-      <div className="bottom-menu__header">
-        <h3 className="bottom-menu__h3">{ title }</h3>
-        <div
-          className="button button--add button--transparent"
-          onClick={() => setBottomMenuState(false)}
-        >
-          <FaTimes />
-        </div>
-      </div>
+    <div className="animation-wrapper bottom-menu">
+        <div className={`bottom-menu__content animation-content ${hidden}`}>
+          <div className="bottom-menu__header">
+            <h3 className="bottom-menu__h3">{ title }</h3>
+            <div
+              className="button button--transparent"
+              onClick={() => setBottomMenuState(false)}
+            >
+              <FaTimes />
+            </div>
+          </div>
 
-      <div className="bottom-menu__list">
-        {
-          items.map((item, index) => {
-            return (
-              <li
-                className="bottom-menu__list-item"
-                key={item.type}
-                onClick={() => handleItemClick(item.type)}
-              >
-                {item.type === 'image' && <FaImage/>}
-                {item.type === 'text' && <FaTextWidth/>}
-                {item.title}
-              </li>
-            )
-          })
-        }
-      </div>
+          <div className="bottom-menu__list">
+            {
+              items.map((item, index) => {
+                return (
+                  <li
+                    className="bottom-menu__list-item"
+                    key={item.type}
+                    onClick={() => handleItemClick(item.type)}
+                  >
+                    {item.type === 'image' && <FaImage/>}
+                    {item.type === 'text' && <FaTextWidth/>}
+                    {item.title}
+                  </li>
+                )
+              })
+            }
+          </div>
+        </div>
     </div>
   )
 }

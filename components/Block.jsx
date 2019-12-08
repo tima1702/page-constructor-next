@@ -21,56 +21,71 @@ export default function Block(
     defaultSize,
     updateDefaultSize
   }) {
-  const [text, setText] = useState('');
-  const [displayControl, setDisplayControl] = useState('hidden');
-  const [isDragDisabled, setDragDisabled] = useState(true);
-  const [isResizeEnabled, setResizeEnabled] = useState({ bottomRight: true });
+  const [inputValue, setInputValue] = useState(defaultText);
   const [imageSize, setImageSize] = useState(defaultSize);
+  const [isControlVisible, setControlVisible] = useState(true);
+  const [isDragEnabled, setDragEnabled] = useState(false);
+  const [isResizeEnabled, setResizeEnabled] = useState({ bottomRight: true });
+
+  const hiddenClass = isControlVisible ? '' : 'hidden';
+  const activeClass = isControlVisible ? 'block--active' : '';
+
   let textInput = React.createRef();
 
   useEffect(() => {
     if (type === 'text') {
-      setText(defaultText);
+      setInputValue(defaultText);
 
       if (!defaultText) {
-        setDisplayControl('')
+        toggleEditMode(false)
       }
     }
     if (type === 'image' && !defaultSize) {
-      setDisplayControl('')
+      toggleEditMode(false)
     }
   }, [defaultText]);
 
   useEffect(() => {
-    if (textInput.current) {
-      textInput.current.focus();
-    }
+    toggleEditMode(true)
   }, []);
 
   useEffect(() => {
-    setImageSize(defaultSize || 400)
+    setImageSize(defaultSize || 250)
   }, [id]);
 
+  const toggleEditMode = useCallback(val => {
+    setDragEnabled(!val);
+    setControlVisible(val);
+    if (type === 'text') {
+      if (val) {
+        textInput.current.focus();
+      } else {
+        if (textInput.current) {
+          textInput.current.blur();
+        }
+      }
+    } else if (type === 'image') {
+      setResizeEnabled({bottomRight: val});
+    }
+  },[isDragEnabled, isResizeEnabled, textInput], );
+
   const onChangeHandler = useCallback(target => {
-    setText(target.value);
+    setInputValue(target.value);
   }, [textInput]);
 
   const onAcceptHandler = useCallback(() => {
     if (type === 'text') {
-      textInput.current.blur();
       saveInput(textInput.current);
-    }
-    if (type === 'image') {
-      setResizeEnabled({});
+    } else if (type === 'image') {
       updateDefaultSize(id, imageSize)
     }
-    setDisplayControl('hidden');
-    setDragDisabled(false)
+
+    toggleEditMode(false)
   }, [textInput]);
 
   const onCancelHandler = useCallback(() => {
     removeBlock(id);
-    setDragDisabled(false)
+    toggleEditMode(false)
   }, [blocks]);
 
   const onResizeHandler = useCallback((event, direction, ref, delta) => {
@@ -78,14 +93,8 @@ export default function Block(
     setImageSize(size)
   }, [blocks, id, imageSize]);
 
-  const onImageClickHandler = useCallback(() => {
-    setResizeEnabled({ bottomRight: true });
-    setDragDisabled(true);
-    setDisplayControl('')
-  }, [id]);
-
   return (
-    <Draggable draggableId={`${type}_${index}`} index={index} isDragDisabled={isDragDisabled}>
+    <Draggable draggableId={`${type}_${index}`} index={index} isDragDisabled={!isDragEnabled}>
       {(provided, snapshot) => (
         <div
           ref={provided.innerRef}
@@ -97,12 +106,12 @@ export default function Block(
             {type === 'text' &&
             <div className="block__text">
               <input
-                className="block__input"
+                className={`block__input ${activeClass}`}
                 id={id}
                 key={id}
                 type="text"
-                value={text || ''}
-                onFocus={() => setDisplayControl('')}
+                value={inputValue || ''}
+                onFocus={() => toggleEditMode(true)}
                 onChange={e => onChangeHandler(e.target)}
                 ref={textInput}
               />
@@ -116,19 +125,20 @@ export default function Block(
                 }}
                 onResizeStop={onResizeHandler}
                 lockAspectRatio={true}
+                className={`block__container ${activeClass}`}
                 enable={isResizeEnabled}
               >
                 <img
-                  className="block__img"
+                  className={`block__img`}
                   id={id}
                   key={id}
                   src={url}
                   alt="Block image"
-                  onClick={onImageClickHandler}
+                  onClick={() => toggleEditMode(true)}
                 />
               </Resizable>
             }
-            <div className={`block__control ${displayControl}`}>
+            <div className={`block__control ${hiddenClass}`}>
               <div
                 className="button button--control button--transparent"
                 onClick={onCancelHandler}

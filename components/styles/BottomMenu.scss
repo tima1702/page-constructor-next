@@ -1,11 +1,23 @@
 @import '_variables';
 
 .bottom-menu {
-  position: absolute;
-  bottom: 0;
-  width: 100vw;
-  padding: 1rem 0;
-  background: $color-gray;
+  &__content {
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+    padding: 1rem 0;
+    background: $color-gray;
+    transition: ease-in-out .3s;
+    z-index: 500;
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 1rem;
+  }
 
   &__h3 {
     font-weight: bold;

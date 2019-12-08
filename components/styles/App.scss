@@ -1,3 +1,5 @@
+@import "_variables";
+
 * {
   margin: 0;
   padding: 0;
@@ -10,4 +12,84 @@ ul, li {
 
 .hidden {
   display: none !important;
+}
+
+.hidden-slide {
+  bottom: -100vh !important;
+}
+
+.hidden-fade {
+  background: rgba(0, 0, 0, 0) !important;
+  pointer-events: none;
+}
+
+.animation-wrapper {
+  overflow: hidden;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  pointer-events: none;
+}
+
+.animation-content {
+  position: absolute;
+  bottom: 0;
+  transition: ease-in-out .3s;
+  z-index: 1000;
+  pointer-events: all !important;
+  width: 100%;
+}
+
+@keyframes zoom {
+  0% {
+    opacity: 0;
+    transform: scale(.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@import '_variables.scss';
+
+.button {
+  width: 3rem;
+  height: 3rem;
+  background: $color-gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: .3rem;
+
+  &--transparent {
+    opacity: .5;
+
+    &:hover {
+      transition: ease-in-out .3s;
+      opacity: 1;
+    }
+  }
+
+  &--menu {
+    position: fixed;
+    top: .5rem;
+    right: .5rem;
+  }
+
+  &--add {
+    position: fixed;
+    bottom: .5rem;
+    right: .5rem;
+  }
+
+  &--control {
+    width: 100%;
+
+    & + & {
+      margin-left: 1rem;
+    }
+  }
 }

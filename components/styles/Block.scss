@@ -1,7 +1,10 @@
+@import '_variables';
+
 .block {
   padding: 1rem 0;
   width: 100%;
   text-align: center;
+  animation: zoom .3s ease;
 
   &__text,
   &__img {
@@ -13,17 +16,62 @@
     border: 0;
     display: flex;
     flex-direction: column;
+    position: relative;
+    padding-left: 2rem;
+    margin-left: -2rem;
+
+    &:hover {
+      &:after {
+        position: absolute;
+        content: "...";
+        align-items: center;
+        width: 3rem;
+        transform: rotate(90deg);
+        padding-top: 0.7rem;
+        opacity: .7;
+        left: 0;
+        font-weight: bold;
+      }
+    }
   }
 
   &__input {
     font-size: 1.5rem;
-    border: 0;
+    border: .1rem solid rgba(0, 0, 0, 0);
+    background: rgba(0, 0, 0, 0);
+    transition: .3s ease-in-out;
+
+    &:hover {
+      border: .1rem solid $color-blue;
+
+      &:after {
+        content: "...";
+      }
+    }
   }
 
   &__control {
     display: flex;
     justify-content: space-around;
     margin-top: 1rem;
+  }
+
+  &--active {
+    position: relative;
+    box-sizing: border-box;
+    border: .1rem solid $color-light-blue;
+
+    &:after {
+      content: '';
+      position: absolute;
+      right: -.25rem;
+      bottom: -.25rem;
+      background: $color-light-blue;
+      width: .5rem;
+      height: .5rem;
+      border-radius: .5rem;
+      pointer-events: none;
+    }
   }
 
   & + & {
