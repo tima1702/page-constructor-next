@@ -55,7 +55,7 @@ export default function BottomMenu(
             </div>
           </div>
 
-          <div className="bottom-menu__list">
+          <ul className="bottom-menu__list">
             {
               items.map((item, index) => {
                 return (
@@ -71,7 +71,7 @@ export default function BottomMenu(
                 )
               })
             }
-          </div>
+          </ul>
         </div>
     </div>
   )

@@ -3,6 +3,11 @@
   "name": "Page Constructor",
   "icons": [
     {
+      "src": "/constructor-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
       "src": "/constructor.png",
       "type": "image/png",
       "sizes": "512x512"
