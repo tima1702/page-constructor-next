@@ -1,8 +1,11 @@
 const withSass = require('@zeit/next-sass');
+const withOffline = require('next-offline');
 
-module.exports = withSass({
-  devIndicators: {
-    autoPrerender: false,
-  },
-});
+module.exports = withOffline(
+  withSass({
+    devIndicators: {
+      autoPrerender: false,
+    },
+  })
+);
 
