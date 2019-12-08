@@ -38,7 +38,7 @@ export default function ImageGallery({ blocks, setBlocks, isVisible, setGalleryS
       <div className={`image-gallery__wrapper ${hiddenFade}`}>
         <div className="animation-wrapper">
           <div className={`animation-content ${hiddenSlide}`}>
-            <dev className="image-gallery__list">
+            <div className="image-gallery__list">
               <ul className="image-gallery__list-wrapper">
                 { imageUrls.map((url, index) => (
                     <li key={`image_${index}`} className="image-gallery__list-item">
@@ -52,7 +52,7 @@ export default function ImageGallery({ blocks, setBlocks, isVisible, setGalleryS
                   )
                 )}
               </ul>
-            </dev>
+            </div>
             <div className="image-gallery__control">
               <button
                 onClick={() => setGalleryState(false)}
