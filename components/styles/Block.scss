@@ -46,18 +46,6 @@
     position: relative;
     box-sizing: border-box;
     border: .1rem solid $color-light-blue;
-
-    &:after {
-      content: '';
-      position: absolute;
-      right: -.25rem;
-      bottom: -.25rem;
-      background: $color-light-blue;
-      width: .5rem;
-      height: .5rem;
-      border-radius: .5rem;
-      pointer-events: none;
-    }
   }
 
   & + & {
@@ -78,5 +66,19 @@
       left: 0;
       font-weight: bold;
     }
+  }
+}
+
+.block__container.block--active {
+  &:after {
+    content: '';
+    position: absolute;
+    right: -.25rem;
+    bottom: -.25rem;
+    background: $color-light-blue;
+    width: .5rem;
+    height: .5rem;
+    border-radius: .5rem;
+    pointer-events: none;
   }
 }
