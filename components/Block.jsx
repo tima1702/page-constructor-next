@@ -104,18 +104,20 @@ export default function Block(
         >
           <div className="block">
             {type === 'text' &&
-            <div className="block__text">
-              <input
-                className={`block__input ${activeClass}`}
-                id={id}
-                key={id}
-                type="text"
-                value={inputValue || ''}
-                onFocus={() => toggleEditMode(true)}
-                onChange={e => onChangeHandler(e.target)}
-                ref={textInput}
-              />
-            </div>
+              <div className={`block__text-container ${activeClass}`}>
+                <div className={`block__text`}>
+                  <input
+                    className={"block__input"}
+                    id={id}
+                    key={id}
+                    type="text"
+                    value={inputValue || ''}
+                    onFocus={() => toggleEditMode(true)}
+                    onChange={e => onChangeHandler(e.target)}
+                    ref={textInput}
+                  />
+                </div>
+              </div>
             }
             {type === 'image' &&
               <Resizable
