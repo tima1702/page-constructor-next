@@ -75,6 +75,7 @@ export default function Block(
 
   const onAcceptHandler = useCallback(() => {
     if (type === 'text') {
+      if (textInput.current.value === '') return
       saveInput(textInput.current);
     } else if (type === 'image') {
       updateDefaultSize(id, imageSize)
