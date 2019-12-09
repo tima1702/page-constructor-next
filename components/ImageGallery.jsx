@@ -37,7 +37,7 @@ export default function ImageGallery({ blocks, setBlocks, isVisible, setGalleryS
     <div className="image-gallery">
       <div className={`image-gallery__wrapper ${hiddenFade}`}>
         <div className="animation-wrapper">
-          <div className={`animation-content ${hiddenSlide}`}>
+          <div className={`animation-content image-gallery__content ${hiddenSlide}`}>
             <div className="image-gallery__list">
               <ul className="image-gallery__list-wrapper">
                 { imageUrls.map((url, index) => (
