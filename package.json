@@ -11,7 +11,7 @@
     "@zeit/next-sass": "^1.0.1",
     "next": "9.1.4",
     "next-pwa": "^1.1.1",
-    "node-sass": "^4.13.0",
+    "node-sass": "^4.13.1",
     "re-resizable": "^6.1.1",
     "react": "16.12.0",
     "react-beautiful-dnd": "^12.2.0",
